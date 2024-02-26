@@ -3,7 +3,8 @@ pipeline {
         label 'Jenkins_Agent'
     }
     tools {
-        jdk 'java17' 
+        // Specify the java17 tool
+        java17 'java17'
         maven 'Maven3'
     }
     stages {
@@ -30,7 +31,7 @@ pipeline {
         stage ('Sonarcube Analysis') {
             steps {
                 script {
-                    withSonarQubeEnv(credentialsId:'jenkins-sonarqube-token'){
+                    withSonarQubeEnv(credentialsId:'jenkins-sonarcube-token'){
                         sh "mvn sonar:sonar"
                     }
                 }
